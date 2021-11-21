@@ -1,4 +1,4 @@
-package main
+package woocommerce
 
 type Config struct {
 	AccessKey string
