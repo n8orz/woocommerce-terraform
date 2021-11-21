@@ -9,11 +9,11 @@ import (
 func Provider() *schema.Provider {
 	return &schema.Provider{
 		Schema: map[string]*schema.Schema{
-			"wc_key": {
+			"woocommerce_key": {
 				Type:     schema.TypeString,
 				Optional: false,
 			},
-			"wc_secret": {
+			"woocommerce_secret": {
 				Type:     schema.TypeString,
 				Optional: false,
 			},
@@ -23,15 +23,15 @@ func Provider() *schema.Provider {
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
-			"wc_product": resourceEvent(),
+			"woocommerce_product": resourceEvent(),
 		},
 		ConfigureFunc: providerConfigure,
 	}
 }
 func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	config := Config{
-		AccessKey: d.Get("wc_key").(string),
-		SecretKey: d.Get("wc_secret").(string),
+		AccessKey: d.Get("woocommerce_key").(string),
+		SecretKey: d.Get("woocommerce_secret").(string),
 		Endpoint:  d.Get("endpoint").(string),
 	}
 	client := &http.Client{}
@@ -39,7 +39,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	if err != nil {
 		return err, nil
 	}
-	req.SetBasicAuth(d.Get("wc_key").(string), d.Get("wc_secret").(string))
+	req.SetBasicAuth(d.Get("woocommerce_key").(string), d.Get("woocommerce_secret").(string))
 	resp, err := client.Do(req)
 	println(resp)
 	if err != nil {

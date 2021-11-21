@@ -4,7 +4,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/plugin"
 	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 
-	"woocommerce-terraform/woocommerce"
+	"github.com/n8orz/woocommerce-terraform/woocommerce"
 )
 
 func main() {
